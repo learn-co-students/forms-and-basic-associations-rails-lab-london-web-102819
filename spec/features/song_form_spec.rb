@@ -17,7 +17,7 @@ describe "the song form", :type => :feature do
     expect(Song.last.artist.name).to eq 'Tori Amos'
     expect(Artist.find_by(name: 'Tori Amos').songs.pluck(:title)).to include 'Little Earthquakes'
   end
-
+end
   it 'creates a song with a genre' do
     visit '/songs/new'
     fill_in :song_artist_name, with: 'Tori Amos'
