@@ -12,11 +12,10 @@
 
   <%= f.fields_for :notes do |n| %>
     <%= n.label :content %>
-    <%= n.text_field :content %><br>
+    <%= n.text_area :content, id: :song_notes_attributes_0_content, name: :'song[notes][][content]', rows: 5, cols: 50%><br>
+
     <%= n.label :content %>
-    <%= n.text_field :content %><br>
-    <%= n.label :content %>
-    <%= n.text_field :content %><br>
+    <%= n.text_area :content, id: :song_notes_attributes_1_content, name: :'song[notes][][content]', rows: 5, cols: 50%><br>
   <% end %>
 
   <%= f.submit %>

@@ -10,11 +10,17 @@ class SongsController < ApplicationController
   def new
     @genre_options = Genre.all.pluck(:name, :id).to_a
     @song = Song.new
+    3.times {@song.notes << Note.new}
   end
 
   def create
-    puts params
+    notes = song_params.delete(:notes)
     @song = Song.new(song_params)
+    
+    notes.each do |c|
+      n = Note.create(content: c[:content])
+      @song.notes << n
+    end
 
     if @song.save
       redirect_to @song
@@ -50,6 +56,6 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:title, :artist_name, :genre_id, notes_attributes: [:content])
+    params.require(:song).permit!
   end
 end
